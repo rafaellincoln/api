@@ -1774,6 +1774,11 @@ class BaseTableGateway extends TableGateway
         foreach ($record as $columnName => $columnValue) {
             $field = $collectionObject->getField($columnName);
 
+	    if ($field->hasRelationship()) {
+            	continue;
+	    }
+
+
             if (
                 ($field && is_array($columnValue)
                     && (!DataTypes::isJson($field->getType())
